@@ -1,49 +1,33 @@
-import { Container, AppBar, Typography, Grow, Grid } from "@material-ui/core";
-import {useDispatch} from 'react-redux'
-import React, { useEffect } from "react";
-import { getShoes } from './actions/shoes';
-import GoogleLogin from "react-google-login";
+import "./App.css";
 import { useState } from "react";
-import axios from "axios";
-import shoes from "./images/realergoat.png";
-import Shoes from "./components/Shoes/Shoes";
-import Form from "./components/Form/Form";
-import useStyles from "./styles";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+// Components
+import Navbar from "./components/Navbar";
+import SideDrawer from "./components/SideDrawer";
+import Backdrop from "./components/Backdrop";
+
+// Screens
+import HomeScreen from "./screens/HomeScreen";
+import ShoeScreen from "./screens/ShoeScreen";
+import CartScreen from "./screens/CartScreen";
 
 function App() {
-  const classes = useStyles();
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getShoes());
-  }, [dispatch])
+  const [sideToggle, setSideToggle] = useState(false);
 
   return (
-    <Container maxwidth="lg">
-      <AppBar className={classes.appBar} position="static" color="inherit">
-        <Typography className={classes.heading} variant="h2" align="center">
-          GoatKicks
-        </Typography>
-        <img className={classes.image} src={shoes} alt="shoes" height="60" />
-      </AppBar>
-      <Grow in>
-        <Container>
-          <Grid
-            container
-            justifyContent="space-between"
-            alignItems="stretch"
-            spacing={3}
-          >
-            <Grid item xs={12} sm={7}>
-              <Shoes />
-            </Grid>
-            <Grid item xs={12} sm={7}>
-              <Form />
-            </Grid>
-          </Grid>
-        </Container>
-      </Grow>
-    </Container>
+    <Router>
+      <Navbar click={() => setSideToggle(true)} />
+      <SideDrawer show={sideToggle} click={() => setSideToggle(false)} />
+      <Backdrop show={sideToggle} click={() => setSideToggle(false)} />
+      <main className="app">
+        <Routes>
+          <Route exact path="/" element={<HomeScreen />} />
+          <Route exact path="/shoe/:id" element={<ShoeScreen />} />
+          <Route exact path="/cart" element={<CartScreen />} />
+        </Routes>
+      </main>
+    </Router>
   );
 }
 
