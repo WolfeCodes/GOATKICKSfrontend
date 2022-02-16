@@ -27,6 +27,7 @@ const INITIAL_STATE = {
 
 const store =  createStore(
     reducer, 
+    INITIAL_STATE,
     composeWithDevTools(applyMiddleware(...middleware))
 );
 

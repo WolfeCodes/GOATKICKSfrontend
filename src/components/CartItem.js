@@ -1,27 +1,31 @@
 import './CartItem.css';
 import {Link} from 'react-router-dom';
 
-const CartItem = () => {
+const CartItem = ({item, qtyChangeHandler, removeHandler}) => {
   return <div className="cartitem">
       <div className="cartitem__image">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSngLllFyVnGOzMormjvcX_w1AF9U5KyjrDUCJuDoN7K246iZNKS-MzWaFimE9S1z-o4V4&usqp=CAU" alt="shoe name" />
+          <img src={item.imgUrl} alt={item.name} />
       </div>
 
-      <Link to={`/shoe/${111}`} className="cartItem__name">
-        <p>Shoe 1</p>
+      <Link to={`/shoe/${item.shoe}`} className="cartItem__name">
+        <p>{item.name}</p>
       </Link>
     
 
-    <p className="cartitem__price">$399.99</p>
+    <p className="cartitem__price">${item.price}</p>
 
-    <select className="cartItem__select">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
+    <select className="cartItem__select" 
+      value={item.qty} 
+      onChange={(e) => qtyChangeHandler(item.shoe, e.target.value)} className="cartItem__select"
+    >
+        {[...Array(item.countInStock).keys()].map(x => (
+          <option key={x+1} value={x+1}>{x+1}</option>
+        ))}
     </select>
 
-    <button className="cartItem__deleteBtn">
+    <button className="cartItem__deleteBtn"
+    onClick={() => removeHandler(item.shoe)}
+    >
         <i className="fas fa-trash"></i>
     </button>
     </div>;
