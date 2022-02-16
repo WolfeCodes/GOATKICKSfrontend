@@ -1,59 +1,93 @@
 import './ShoeScreen.css'
+import {useState, useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import { useParams, useNavigate } from 'react-router-dom';
+import React from 'react';
 
-const ShoeScreen = () => {
+
+//Actions
+import { getShoeDetails } from '../redux/actions/shoeActions';
+import { getShoes } from '../redux/actions/shoeActions';
+import { addToCart } from '../redux/actions/cartActions';
+
+const ShoeScreen = ({match}) => {
+  const navigate = useNavigate();
+  const { id } = useParams();
+
+  const [qty, setQty, size, setSize] = useState(1);
+
+  const shoeDetails = useSelector((state) => state.getShoeDetails);
+  const {loading, error, shoe} = shoeDetails
+  
+  
+  const dispatch = useDispatch();
+
+
+  useEffect(() => {
+    dispatch(getShoeDetails(id));
+  },[dispatch, match])
+
+  const addToCartHandler = () => {
+    dispatch(addToCart(shoe._id, qty));
+    navigate(`/cart`);
+  };
+
   return (
     <div className="shoescreen">
-      <div className="shoescreen__left">
+      {loading ? <h2>Loading...</h2> : error ? <h2>{error}</h2> : (
+        <>
+        <div className="shoescreen__left">
         <div className='left__image'>
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSngLllFyVnGOzMormjvcX_w1AF9U5KyjrDUCJuDoN7K246iZNKS-MzWaFimE9S1z-o4V4&usqp=CAU" alt="shoe name" />
+          <img 
+            src={shoe.imgUrl} 
+            alt={shoe.name} 
+          />
         </div>
 
         <div className="left__info">
-          <p className="left__name">Shoe 1</p>
-          <p>Price: $499.99</p>
-          <p>Description: Mens Black/White</p>
+          <p className="left__name">
+            {shoe.name}
+          </p>
+          <p>{shoe.color}</p>
         </div>
       </div>
       <div className="shoescreen__right">
         <div className="right__info">
           <p>
-            Price: <span>$399.99</span>
+            Price: <span>{shoe.price}</span>
           </p>
           <p>
-            Size
-            <select>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-            </select>
+                Size
+                <select value={size} onChange={(e) => setSize(e.target.value)}>
+                  {[...Array(shoe.size).keys()].map((x) => (
+                    <option key={x + 1} value={x + 1}>
+                      {x + 1}
+                    </option>
+                  ))}
+                </select>
+              </p>
+          <p>
+            Status: <span>{shoe.countInStock > 0 ? "In Stock" : "Out of Stock"}</span>
           </p>
           <p>
-            Status: <span>In Stock</span>
-          </p>
+              Qty
+                <select value={qty} onChange={(e) => setQty(e.target.value)}>
+                  {[...Array(shoe.countInStock).keys()].map((x) => (
+                    <option key={x + 1} value={x + 1}>
+                      {x + 1}
+                    </option>
+                  ))}
+                </select>
+              </p>
           <p>
-            Qty
-            <select>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-            </select>
-          </p>
-          <p>
-            <button type="button">Add to Cart</button>
+            <button type="button" onClick={addToCartHandler}>Add to Cart</button>
           </p>
         </div>
       </div>
+        </>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default ShoeScreen
+export default ShoeScreen;

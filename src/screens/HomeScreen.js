@@ -12,7 +12,7 @@ const HomeScreen = () => {
 
   const dispatch = useDispatch();
 
-  const getShoes = useSelector(state => state.getShoes);
+  const getShoes = useSelector((state) => state.getShoes);
   const { shoes, loading, error } = getShoes;
 
   useEffect(() => {
@@ -21,8 +21,6 @@ const HomeScreen = () => {
 
   return (
     <div className="homescreen">
-      {" "}
-      HomeScreen
       <h2 className="homescreen__title">Latest Realeases</h2>
       <div className="homescreen__shoes">
         {loading ? (
