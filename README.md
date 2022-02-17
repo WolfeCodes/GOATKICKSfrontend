@@ -46,5 +46,5 @@ Node.js, Express, Javascript, CSS, HTML, MongoDB, Heroku, Atlas, React, Redux, A
 ## Things to come back to
 
 - Add change sizes
-- Add google auth
-- add Favorite shoe list
+- Add user auth
+- Add Favorite shoe list

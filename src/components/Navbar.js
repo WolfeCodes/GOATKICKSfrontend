@@ -1,8 +1,31 @@
 import './Navbar.css'
+import React, { useState } from 'react';
 import {Link} from 'react-router-dom'
 import { useSelector } from 'react-redux';
+import { GoogleLogin, GoogleLogout } from 'react-google-login';
+
+const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
 const NavBar = ({click}) => {
+
+    const [showloginButton, setShowloginButton] = useState(true);
+    const [showlogoutButton, setShowlogoutButton] = useState(false);
+    const onLoginSuccess = (res) => {
+        console.log('Login Success:', res.profileObj);
+        setShowloginButton(false);
+        setShowlogoutButton(true);
+    };
+
+    const onLoginFailure = (res) => {
+        console.log('Login Failed:', res);
+    };
+
+    const onSignoutSuccess = () => {
+        alert("You have been logged out successfully");
+        console.clear();
+        setShowloginButton(true);
+        setShowlogoutButton(false);
+    };
 
     const cart = useSelector((state) => state.cart)
     const {cartItems} = cart;
@@ -16,6 +39,29 @@ const NavBar = ({click}) => {
             <div className="navbar__logo">
                 <h2>GOATKICKS</h2>
             </div>
+            <div className="GoogleLogin">
+            { showloginButton ?
+                <GoogleLogin
+                    clientId={clientId}
+                    buttonText="Sign In"
+                    onSuccess={onLoginSuccess}
+                    onFailure={onLoginFailure}
+                    cookiePolicy={'single_host_origin'}
+                    isSignedIn={true}
+                    
+                /> : null}
+
+            { showlogoutButton ?
+                <GoogleLogout
+                    clientId={clientId}
+                    buttonText="Sign Out"
+                    onLogoutSuccess={onSignoutSuccess}
+                >
+                </GoogleLogout> : null
+            }
+        </div>
+    );
+}
 
             <ul className="navbar__links">
                 <li>
