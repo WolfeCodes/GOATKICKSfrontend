@@ -9,13 +9,13 @@ export const cartReducer = (state = CART_INITIAL_STATE, action) => {
     case actionTypes.ADD_TO_CART:
       const item = action.payload;
 
-      const existItem = state.cartItems.find((x) => x.product === item.shoe);
+      const existItem = state.cartItems.find((x) => x.shoe === item.shoe);
 
       if (existItem) {
         return {
           ...state,
           cartItems: state.cartItems.map((x) =>
-            x.product === existItem.shoe ? item : x
+            x.shoe === existItem.shoe ? item : x
           ),
         };
       } else {
