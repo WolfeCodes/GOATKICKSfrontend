@@ -1,11 +1,14 @@
 import * as actionTypes from "../constants/shoeConstants";
 import axios from "axios";
 
+//add baseURL to axios fetch
+const baseURL = process.env.REACT_APP_BASEURL;
+
 export const getShoes = () => async (dispatch) => {
   try {
     dispatch({ type: actionTypes.GET_SHOES_REQUEST });
 
-    const { data } = await axios.get("/api/shoes");
+    const { data } = await axios.get(baseURL + "/api/shoes");
     console.log("Get shoes data", data);
 
     dispatch({
@@ -28,7 +31,7 @@ export const getShoeDetails = (id) => async (dispatch) => {
     dispatch({ type: actionTypes.GET_SHOE_DETAILS_REQUEST });
     console.log("get shoe id", id)
 
-    const { data } = await axios.get(`http://localhost:5000/api/shoes/${id}`);
+    const { data } = await axios.get(baseURL + `/api/shoes/${id}`);
 
     dispatch({
       type: actionTypes.GET_SHOE_DETAILS_SUCCESS,
