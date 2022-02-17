@@ -23,25 +23,25 @@ Node.js, Express, Javascript, CSS, HTML, MongoDB, Heroku, Atlas, React, Redux, A
 
 ## User Stories
 
-As a user I want to be able to login
-As a user I want to be able to add to a list of favorites
-As a user I want to be able to add shoes to my Cart
+- As a user I want to be able to login
+- As a user I want to be able to add to a list of favorites
+- As a user I want to be able to add shoes to my Cart
 
 
 
 
 ## MVP Goals
 
-Full CRUD
-Favorite Shoe option
+- Full CRUD
+- Favorite Shoe option
 
 
 
 ## Stretch Goals
 
-Google Auth
-add to cart feature
-Add more than shoes
+- Google Auth
+- Add to cart feature
+- Add more than shoes
 
 ## Things to come back to
 
