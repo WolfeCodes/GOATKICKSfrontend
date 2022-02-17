@@ -4,10 +4,10 @@ import {Link} from 'react-router-dom';
 const CartItem = ({item, qtyChangeHandler, removeHandler}) => {
   return <div className="cartitem">
       <div className="cartitem__image">
-          <img src={item.imgUrl} alt={item.name} />
+          <img src={item.imageUrl} alt={item.name} />
       </div>
 
-      <Link to={`/shoe/${item.shoe}`} className="cartItem__name">
+      <Link to={`/shoe/${item.shoe}`} className="cartitem__name">
         <p>{item.name}</p>
       </Link>
     
@@ -18,8 +18,10 @@ const CartItem = ({item, qtyChangeHandler, removeHandler}) => {
       value={item.qty} 
       onChange={(e) => qtyChangeHandler(item.shoe, e.target.value)} className="cartItem__select"
     >
-        {[...Array(item.countInStock).keys()].map(x => (
-          <option key={x+1} value={x+1}>{x+1}</option>
+        {[...Array(item.countInStock).keys()].map((x) => (
+          <option key={x+1} value={x+1}>
+            {x+1}
+            </option>
         ))}
     </select>
 

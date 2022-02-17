@@ -22,6 +22,10 @@
     "redux-thunk": "^2.4.1",
     "web-vitals": "^2.1.4"
   },
+  "engines": {
+    "node": "17.1.0", 
+    "npm": "8.1.2"   
+  },
   "scripts": {
     "start": "react-scripts start",
     "server": "nodemon index.js --ignore client",

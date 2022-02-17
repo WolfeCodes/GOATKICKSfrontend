@@ -1,13 +1,13 @@
-import './CartScreen.css'
-import {useEffect} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
-import {Link} from 'react-router-dom';
+import "./CartScreen.css";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 //Components
-import CartItem from '../components/CartItem';
+import CartItem from "../components/CartItem";
 
-//Actions 
-import { addToCart, removeFromCart } from '../redux/actions/cartActions';
+//Actions
+import { addToCart, removeFromCart } from "../redux/actions/cartActions";
 
 const CartScreen = () => {
   const dispatch = useDispatch();
@@ -21,16 +21,21 @@ const CartScreen = () => {
     dispatch(addToCart(id, qty));
   };
 
-  const removeHandler = (id) => {
+  const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id));
-  }
+  };
 
   const getCartCount = () => {
     return cartItems.reduce((qty, item) => Number(item.qty) + qty, 0);
   };
 
   const getCartSubTotal = () => {
-    return cartItems.reduce((price, item) => price + item.price * item.qty, 0);
+    // add qty to state object
+    // dispatch qty action on pull down menu
+    // return cartItems.reduce((price, item) => price + item.price * item.qty, 0).toFixed(2);
+    console.log("Call function", cartItems);
+    window.items = cartItems;
+    return 23;
   };
 
   return (
@@ -38,7 +43,6 @@ const CartScreen = () => {
       <div className="cartscreen">
         <div className="cartscreen__left">
           <h2>Shopping Cart</h2>
-
           {cartItems.length === 0 ? (
             <div>
               Your Cart Is Empty <Link to="/">Go Back</Link>
@@ -49,7 +53,7 @@ const CartScreen = () => {
                 key={item.shoe}
                 item={item}
                 qtyChangeHandler={qtyChangeHandler}
-                removeHandler={removeHandler}
+                removeHandler={removeFromCartHandler}
               />
             ))
           )}
@@ -58,7 +62,7 @@ const CartScreen = () => {
         <div className="cartscreen__right">
           <div className="cartscreen__info">
             <p>Subtotal ({getCartCount()}) items</p>
-            <p>${getCartSubTotal().toFixed(2)}</p>
+            <p>${getCartSubTotal()}</p>
           </div>
           <div>
             <button>Proceed To Checkout</button>

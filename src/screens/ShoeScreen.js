@@ -11,18 +11,15 @@ import { getShoes } from '../redux/actions/shoeActions';
 import { addToCart } from '../redux/actions/cartActions';
 
 const ShoeScreen = ({match}) => {
+  const [qty, setQty, size, setSize] = useState(1);
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const [qty, setQty, size, setSize] = useState(1);
-
   const shoeDetails = useSelector((state) => state.getShoeDetails);
-  const {loading, error, shoe} = shoeDetails
+  const {loading, error, shoe} = shoeDetails;
   
-  
-  const dispatch = useDispatch();
-
-
   useEffect(() => {
     dispatch(getShoeDetails(id));
   },[dispatch, match])
@@ -56,7 +53,7 @@ const ShoeScreen = ({match}) => {
           <p>
             Price: <span>{shoe.price}</span>
           </p>
-          <p>
+          {/* <p>
                 Size
                 <select value={size} onChange={(e) => setSize(e.target.value)}>
                   {[...Array(shoe.size).keys()].map((x) => (
@@ -65,7 +62,7 @@ const ShoeScreen = ({match}) => {
                     </option>
                   ))}
                 </select>
-              </p>
+              </p> */}
           <p>
             Status: <span>{shoe.countInStock > 0 ? "In Stock" : "Out of Stock"}</span>
           </p>
