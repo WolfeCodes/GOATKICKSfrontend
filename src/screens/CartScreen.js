@@ -21,7 +21,7 @@ const CartScreen = () => {
     dispatch(addToCart(id, qty));
   };
 
-  const removeFromCartHandler = (id) => {
+  const removeHandler = (id) => {
     dispatch(removeFromCart(id));
   };
 
@@ -48,7 +48,7 @@ const CartScreen = () => {
                 key={item.shoe}
                 item={item}
                 qtyChangeHandler={qtyChangeHandler}
-                removeHandler={removeFromCartHandler}
+                removeHandler={removeHandler}
               />
             ))
           )}

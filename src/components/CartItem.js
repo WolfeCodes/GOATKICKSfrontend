@@ -19,15 +19,14 @@ const CartItem = ({item, qtyChangeHandler, removeHandler}) => {
       onChange={(e) => qtyChangeHandler(item.shoe, e.target.value)} className="cartItem__select"
     >
         {[...Array(item.countInStock).keys()].map((x) => (
-          <option key={x+1} value={x+1}>
-            {x+1}
+          <option key={x + 1} value={x + 1}>
+            {x + 1}
             </option>
         ))}
     </select>
-
     <button className="cartItem__deleteBtn"
     onClick={() => removeHandler(item.shoe)}
-    >
+    >  
         <i className="fas fa-trash"></i>
     </button>
     </div>;
