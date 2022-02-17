@@ -17,6 +17,7 @@ This will be an online shoe store where users can come and "Purchase Shoes"
 Node.js, Express, Javascript, CSS, HTML, MongoDB, Heroku, Atlas, React, Redux, Axios
 
 ## Wireframes
+![Screen Shot 2022-02-17 at 3 49 28 PM](https://user-images.githubusercontent.com/49251769/154576747-adc98b46-011e-4606-b8cb-8b95b8cfbda8.png)
 
 
 
