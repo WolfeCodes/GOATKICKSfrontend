@@ -31,7 +31,7 @@ export const getShoeDetails = (id) => async (dispatch) => {
     dispatch({ type: actionTypes.GET_SHOE_DETAILS_REQUEST });
     console.log("get shoe id", id)
 
-    const { data } = await axios.get(baseURL + `api/shoes/${id}`);
+    const { data } = await axios.get(baseURL + `/api/shoes/${id}`);
 
     dispatch({
       type: actionTypes.GET_SHOE_DETAILS_SUCCESS,
@@ -39,7 +39,7 @@ export const getShoeDetails = (id) => async (dispatch) => {
     });
   } catch (error) {
     dispatch({
-      type: actionTypes.GET_SHOES_FAIL,
+      type: actionTypes.GET_SHOE_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
