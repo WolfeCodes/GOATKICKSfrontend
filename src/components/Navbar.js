@@ -8,8 +8,9 @@ const NavBar = ({click}) => {
     const {cartItems} = cart;
 
     const getCartCount = () => {
-        return cartItems.reduce((qty, item) => qty + Number(item.qty), 0)
-    }
+        return cartItems.reduce((qty, item) => Number(item.qty) + qty, 0)
+    };
+    
     return (
         <nav className="navbar">
             <div className="navbar__logo">
@@ -22,7 +23,7 @@ const NavBar = ({click}) => {
                         <i className="fas fa-shopping-cart"></i>
                         <span>
                           Cart
-                          <span className="cartlogo__badge">{getCartCount}</span>
+                          <span className="cartlogo__badge">{getCartCount()}</span>
                         </span>
                         
                     </Link>

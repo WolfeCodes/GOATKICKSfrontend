@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 const CartItem = ({item, qtyChangeHandler, removeHandler}) => {
   return <div className="cartitem">
       <div className="cartitem__image">
-          <img src={item.imageUrl} alt={item.name} />
+          <img src={item.imgUrl} alt={item.name} />
       </div>
 
       <Link to={`/shoe/${item.shoe}`} className="cartitem__name">

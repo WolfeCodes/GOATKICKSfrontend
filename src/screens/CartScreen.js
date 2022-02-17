@@ -30,12 +30,7 @@ const CartScreen = () => {
   };
 
   const getCartSubTotal = () => {
-    // add qty to state object
-    // dispatch qty action on pull down menu
-    // return cartItems.reduce((price, item) => price + item.price * item.qty, 0).toFixed(2);
-    console.log("Call function", cartItems);
-    window.items = cartItems;
-    return 23;
+    return cartItems.reduce((price, item) => price + item.price * item.qty, 0).toFixed(2);
   };
 
   return (
