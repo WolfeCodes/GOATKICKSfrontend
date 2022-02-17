@@ -39,7 +39,7 @@ export const getShoeDetails = (id) => async (dispatch) => {
     });
   } catch (error) {
     dispatch({
-      type: actionTypes.GET_SHOE_FAIL,
+      type: actionTypes.GET_SHOE_DETAILS_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
