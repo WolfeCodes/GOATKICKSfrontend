@@ -8,8 +8,6 @@
   z-index: 50;
 }
 
-
-
 .navbar__logo h2 {
   color: #f4f4f4;
   font-size: 1.4rem;
@@ -100,10 +98,10 @@
   }
 }
 
-.GoogleLogin{
+.GoogleLogin {
   position: absolute;
   top: 10%;
   left: 15%;
-  margin-top: -67px;
-  margin-left: -50px;
+  margin-top: -44px;
+  margin-left: -35px;
 }
