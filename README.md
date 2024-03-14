@@ -5,7 +5,7 @@ GOATKICKS
 
 ## Project Link
 
-https://goatkicks-frontend.herokuapp.com/
+Heroku deleted link, have to re-deploy
 
 ## Project Description
 
